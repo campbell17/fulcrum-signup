@@ -1,15 +1,19 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function TrialForm() {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
-          <div>
-            <img
-              className="mx-auto h-12 w-auto"
+          <div className="text-center">
+            <Image
+              className="mx-auto h-12 w-12"
               src="/fulcrumicon.svg"
               alt="Fulcrum"
+              height={48}
+              width={48}
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Start your free trial
@@ -50,7 +54,8 @@ export default function TrialForm() {
 
             </div>
             <div>
-              <button
+              <Link href="/signup-name">
+              <a
                 type="submit"
                 className="mt-8 group relative flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
               >
@@ -58,7 +63,8 @@ export default function TrialForm() {
                   <CheckIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                 </span>
                 Get started
-              </button>
+              </a>
+              </Link>
             </div>
           </form>
         </div>

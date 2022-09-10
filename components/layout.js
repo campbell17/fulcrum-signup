@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import Link from 'next/link';
+import Image from 'next/image'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -40,10 +41,12 @@ export default function Layout({ children }) {
                     <div className="flex-shrink-0">
                       <Link href="/">
                         <a>
-                          <img
+                          <Image
                             className="h-8 w-8"
                             src="/fulcrumicon.svg"
                             alt="Fulcrum"
+                            width={32}
+                            height={32}
                           />
                         </a>
                       </Link>
@@ -64,7 +67,7 @@ export default function Layout({ children }) {
                         <div>
                           <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            <Image width={32} height={32} className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -80,15 +83,16 @@ export default function Layout({ children }) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    {item.name}
-                                  </a>
+                                  <Link href={item.href}>
+                                    <a                                    
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block px-4 py-2 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -131,7 +135,7 @@ export default function Layout({ children }) {
                 <div className="border-t border-gray-700 pt-4 pb-3">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                      <Image width={40} height={40} className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
