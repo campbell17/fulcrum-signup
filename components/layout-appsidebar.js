@@ -8,6 +8,8 @@ import {
   XMarkIcon,
   Squares2X2Icon,
   ArrowPathRoundedSquareIcon,
+  StarIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -78,15 +80,11 @@ export default function LayoutAppSidebar({ children }) {
               {/* Profile dropdown */}
               <Menu as="div" className="relative flex-shrink-0">
                 <div>
-                  <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                  <Menu.Button className="col-span-1 flex rounded-md shadow-sm">
                     <span className="sr-only">Open user menu</span>
-                    <Image
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                      alt=""
-                      width={32}
-                      height={32}
-                    />
+                    <div className="bg-gray-800 hover:bg-gray-900 border border-gray-300 hover:border-white flex-shrink-0 flex items-center justify-center w-10 h-10 text-white rounded-full">
+                      <UserIcon className="w-6 h-6 text-gray-300 hover:text-white"/>
+                    </div>                    
                   </Menu.Button>
                 </div>
                 <Transition
