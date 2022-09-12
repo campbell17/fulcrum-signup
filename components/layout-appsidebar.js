@@ -53,7 +53,7 @@ export default function LayoutAppSidebar({ children }) {
                 </a>
               </Link>
             </div>
-            <div className="mt-6 w-full flex-1 space-y-1 px-2">
+            <div className="mt-6 w-full flex-1 space-y-1 px-2 overflow-auto">
               {sidebarNavigation.map((item) => (
                 <Link key={item.name} href={item.href}>                
                   <a                                    

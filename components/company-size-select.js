@@ -4,7 +4,6 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 const sizes = [
-  { id: 0, name: 'Company size' },
   { id: 1, name: '1-10' },
   { id: 2, name: '11-50' },
   { id: 3, name: '51-200' },
@@ -21,7 +20,7 @@ function classNames(...classes) {
 }
 
 export default function CompanySizeSelect() {
-  const [selected, setSelected] = useState(sizes[0])
+  const [selected, setSelected] = useState(sizes[3])
 
   return (
     <Listbox value={selected} onChange={setSelected}>

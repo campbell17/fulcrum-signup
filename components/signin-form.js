@@ -3,6 +3,7 @@ import TrialModal from '../components/modal';
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
+import PasswordField from './password-field';
 
 export default function SigninForm() {
   const [open, setOpen] = useState(false)
@@ -12,13 +13,17 @@ export default function SigninForm() {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
-            <Image
-              className="mx-auto h-12 w-12"
-              src="/fulcrumicon.svg"
-              alt="Fulcrum"
-              height={48}
-              width={48}
-            />
+            <Link href="/">
+              <a>
+                <Image
+                  className="mx-auto h-12 w-12"
+                  src="/fulcrumicon.svg"
+                  alt="Fulcrum"
+                  height={48}
+                  width={48}
+                />
+              </a>
+            </Link>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
             </h2>
@@ -33,9 +38,9 @@ export default function SigninForm() {
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
                 <input
@@ -44,24 +49,11 @@ export default function SigninForm() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-sky-400 sm:text-sm"
-                  placeholder="Email address"
+                  className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+                  placeholder="you@company.com"
                 />
               </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-sky-400 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
+              <PasswordField />
             </div>
 
             <div className="flex items-center justify-between">

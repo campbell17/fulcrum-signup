@@ -22,7 +22,7 @@ export default function SignupForm3() {
             </Link>
 
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Finally, how many team members does your company have?
+              Finally, how many team members does Spatial Networks have?
             </h2>
             {/* <p className="mt-2 text-sm text-gray-500 text-center">
               What kind of work do you do at Spatial Networks?
@@ -30,7 +30,10 @@ export default function SignupForm3() {
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
             <div className="-space-y-px">
-              <div className="col-span-2 sm:col-span-3">
+              <label htmlFor="company-size" className="block text-sm font-medium text-gray-700">
+                Company size
+              </label>
+              <div className="mt-1 col-span-2 sm:col-span-3">
                 <CompanySizeSelect />
               </div>
               {/* <div className="col-span-2 sm:col-span-3">

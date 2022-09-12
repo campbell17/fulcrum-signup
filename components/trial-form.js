@@ -1,20 +1,29 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { EyeSlashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import CreatePasswordField from './create-password-field';
 
 export default function TrialForm() {
+  const router = useRouter();
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
-            <Image
-              className="mx-auto h-12 w-12"
-              src="/fulcrumicon.svg"
-              alt="Fulcrum"
-              height={48}
-              width={48}
-            />
+            <Link href="/">
+              <a>
+                <Image
+                  className="mx-auto h-12 w-12"
+                  src="/fulcrumicon.svg"
+                  alt="Fulcrum"
+                  height={48}
+                  width={48}
+                />
+              </a>
+            </Link>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Start your free trial
             </h2>
@@ -26,7 +35,7 @@ export default function TrialForm() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="email" className="sr-only">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
                 <input
@@ -34,24 +43,11 @@ export default function TrialForm() {
                   name="email"
                   id="email"
                   autoComplete="email"
-                  placeholder="Email address"
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+                  placeholder="you@company.com"
+                  className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
                 />
               </div>
-              <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="password" className="sr-only">
-                  Create password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="given-name"
-                  placeholder="Create password"
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
-                />
-              </div>
-
+              <CreatePasswordField />
             </div>
             <div>
               <Link href="/signup-name">
@@ -66,8 +62,24 @@ export default function TrialForm() {
               </a>
               </Link>
             </div>
-          </form>
-        </div>
+          </form>          
+          <div className={router.pathname.includes("/signin") ? "hidden" : "relative"}>
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-gray-50 px-2 text-sm text-gray-500">Or</span>
+            </div>
+          </div>          
+          <p className={router.pathname.includes("/signin") ? "hidden" : "mt-2 text-center text-sm text-gray-600"}>
+            Already have an account?{' '}
+            <Link href="/signin" >
+              <a className="font-medium text-sky-400 hover:text-sky-500">
+                Sign in.
+              </a>
+            </Link>
+          </p>
+        </div>        
       </div>
     </>
   )

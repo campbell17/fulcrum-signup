@@ -31,8 +31,8 @@ function classNames(...classes) {
 export default function Layout({ children }) {
   return (
     <>
-      <div className="min-h-full">
-        <Disclosure as="nav" className="bg-gray-50 border-t-4 border-red-500">
+      <div className="min-h-full border-t-4 border-red-500">
+        <Disclosure as="nav" className="bg-gray-50 hidden">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -30,18 +30,18 @@ export default function SignupForm() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="first-name" className="sr-only">First name</label>
-                <input placeholder="First name" type="text" name="first-name" id="first-name" autoComplete="given-name" className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
+                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">First name</label>
+                <input placeholder="Murray" type="text" name="first-name" id="first-name" autoComplete="given-name" className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="last-name" className="sr-only">Last name</label>
-                <input placeholder="Last name" type="text" name="last-name" id="last-name" autoComplete="family-name" className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
+                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">Last name</label>
+                <input placeholder="Walker" type="text" name="last-name" id="last-name" autoComplete="family-name" className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="company-name" className="sr-only">
+                <label htmlFor="company-name" className="block text-sm font-medium text-gray-700">
                   Phone number
                 </label>
                 <input
@@ -49,14 +49,14 @@ export default function SignupForm() {
                   name="company-name"
                   id="company-name"
                   autoComplete="phone-number"
-                  placeholder="Phone number"
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+                  placeholder="555 867 5309"
+                  className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
                 />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="company-name" className="sr-only">
+                <label htmlFor="company-name" className="block text-sm font-medium text-gray-700">
                   Company name
                 </label>
                 <input
@@ -64,8 +64,8 @@ export default function SignupForm() {
                   name="company-name"
                   id="company-name"
                   autoComplete="company-name"
-                  placeholder="Company name"
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+                  placeholder="Spatialnetworks"
+                  className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
                 />
               </div>
             </div>
