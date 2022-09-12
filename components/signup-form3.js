@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link';
 import Image from 'next/image'
+import CompanySizeSelect from './company-size-select';
 
 export default function SignupForm3() {
   return (
@@ -30,6 +31,9 @@ export default function SignupForm3() {
           <form className="mt-8 space-y-6" action="#" method="POST">
             <div className="-space-y-px">
               <div className="col-span-2 sm:col-span-3">
+                <CompanySizeSelect />
+              </div>
+              {/* <div className="col-span-2 sm:col-span-3">
                 <label htmlFor="company-size" className="sr-only">
                   Company size
                 </label>
@@ -51,7 +55,7 @@ export default function SignupForm3() {
                   <option>10,000+</option>
                   <option>Personal use</option>
                 </select>
-              </div>
+              </div> */}
             </div>
             <div className="mx-auto w-full max-w-md space-y-8">
               <div className="mt-8 flex items-center justify-between">

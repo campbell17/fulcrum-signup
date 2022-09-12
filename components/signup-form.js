@@ -42,6 +42,21 @@ export default function SignupForm() {
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="company-name" className="sr-only">
+                  Phone number
+                </label>
+                <input
+                  type="tel"
+                  name="company-name"
+                  id="company-name"
+                  autoComplete="phone-number"
+                  placeholder="Phone number"
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="company-name" className="sr-only">
                   Company name
                 </label>
                 <input
