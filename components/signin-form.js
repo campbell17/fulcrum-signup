@@ -87,7 +87,7 @@ export default function SigninForm() {
             </div>
 
             <div>
-              <Link href="/app/dashboard">
+              <Link href="/app/dashboard-loading">
                 <a 
                   type="submit"
                   className="group relative flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
