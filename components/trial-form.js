@@ -27,7 +27,7 @@ export default function TrialForm() {
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="email" className="sr-only">
-                  Email
+                  Email address
                 </label>
                 <input
                   type="email"
@@ -40,14 +40,14 @@ export default function TrialForm() {
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="password" className="sr-only">
-                  Password
+                  Create password
                 </label>
                 <input
                   type="password"
                   name="password"
                   id="password"
                   autoComplete="given-name"
-                  placeholder="Password"
+                  placeholder="Create password"
                   className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
                 />
               </div>
