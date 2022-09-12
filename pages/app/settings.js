@@ -1,12 +1,12 @@
 import LayoutAppSidebar from '../../components/layout-appsidebar';
-import DashboardContent from '../../components/app/dashboard-content';
+import SettingsContent from '../../components/app/settings-content';
 
-export default function Home() {
+export default function Settings() {
   return (
     <LayoutAppSidebar>
       <div className="px-4 py-6 sm:px-6 lg:px-8">
-        <DashboardContent />      
-      </div>
+        <SettingsContent />      
+      </div>  
     </LayoutAppSidebar>
   )
 }

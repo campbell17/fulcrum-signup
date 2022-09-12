@@ -3,3 +3,7 @@
 @tailwind utilities;
 @tailwind forms;
 
+div#__next,
+div#__next > div {
+  height: 100%;
+}
