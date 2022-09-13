@@ -49,6 +49,21 @@ export default function TrialForm() {
               </div>
               <CreatePasswordField />
             </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="tos"
+                  name="tos"
+                  type="checkbox"
+                  required
+                  className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-sky-400 cursor-pointer"
+                />
+                <label htmlFor="tos" className="ml-2 block text-sm text-gray-900 cursor-pointer">
+                  I agree to the <Link href="#"><a className="font-medium text-sky-400 hover:text-sky-500">Terms of Service</a></Link> and <Link href="#"><a className="font-medium text-sky-400 hover:text-sky-500">Privacy Policy</a></Link>
+                </label>
+              </div>
+            </div>
+
             <div>
               <Link href="/signup-name">
               <button
