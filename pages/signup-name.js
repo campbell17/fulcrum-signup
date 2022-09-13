@@ -1,10 +1,10 @@
 import Layout from '../components/layout';
-import SignupForm from '../components/signup-form';
+import SignupFormName from '../components/signup-form-name';
 
-export default function Signup() {
+export default function SignupName() {
   return (
     <Layout>
-      <SignupForm />      
+      <SignupFormName />      
     </Layout>
 )
 }

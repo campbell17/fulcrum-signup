@@ -1,10 +1,10 @@
 import Layout from '../components/layout';
-import SignupForm2 from '../components/signup-form2';
+import SignupFormIndustry from '../components/signup-form-industry';
 
-export default function Signup2() {
+export default function SignupIndustry() {
   return (
     <Layout>
-      <SignupForm2 />      
+      <SignupFormIndustry />      
     </Layout>
 )
 }

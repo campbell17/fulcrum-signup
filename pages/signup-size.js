@@ -1,10 +1,10 @@
 import Layout from '../components/layout';
-import SignupForm3 from '../components/signup-form3';
+import SignupFormSize from '../components/signup-form-size';
 
-export default function Signup3() {
+export default function SignupSize() {
   return (
     <Layout>
-      <SignupForm3 />      
+      <SignupFormSize />      
     </Layout>
 )
 }

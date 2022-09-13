@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import CompanySizeSelect from './company-size-select';
 
-export default function SignupForm3() {
+export default function SignupFormSize() {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -62,7 +62,7 @@ export default function SignupForm3() {
             </div>
             <div className="mx-auto w-full max-w-md space-y-8">
               <div className="mt-8 flex items-center justify-between">
-                <Link href="/signup-industry">
+                <Link href="/signup-type">
                   <button
                     
                     className="inline-flex justify-center flex-1 rounded-md border border-gray-300 py-2 px-4 text-sm font-medium text-gray-400 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2"
@@ -85,7 +85,7 @@ export default function SignupForm3() {
             </div>
           </form>
           <p className="mt-2 text-xs text-gray-500 text-center">
-            Step 3 of 3
+            Step 4 of 4
           </p>
         </div>
       </div>

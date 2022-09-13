@@ -2,7 +2,7 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function SignupForm() {
+export default function SignupFormName() {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -84,7 +84,7 @@ export default function SignupForm() {
             </div>
           </form>
           <p className="mt-2 text-xs text-gray-500 text-center">
-            Step 1 of 3
+            Step 1 of 4
           </p>
         </div>
       </div>

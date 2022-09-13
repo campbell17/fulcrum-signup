@@ -13,7 +13,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import IndustrySelect from './industry-select'
 
-export default function SignupForm2() {
+export default function SignupFormIndustry() {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -35,7 +35,7 @@ export default function SignupForm2() {
                 What&rsquo;s your industry?
               </h2>
               <p className="mt-2 text-sm text-gray-500 text-center">
-                What kind of work do you do at Spatial Networks? This helps us set you up with sample data relevant to your industry.
+                This helps us set you up with sample data relevant to your industry.
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function SignupForm2() {
                     back
                   </a>
                 </Link>
-                <Link href="/signup-size">
+                <Link href="/signup-type">
                   <button                  
                     type="submit"
                     className="group relative flex pr-10 ml-6 w-80 justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
@@ -220,7 +220,7 @@ export default function SignupForm2() {
             </div>
           </form>
           <p className="mt-2 text-xs text-gray-500 text-center">
-            Step 2 of 3
+            Step 2 of 4
           </p>
         </div>
       </div>
