@@ -38,7 +38,7 @@ export default function LayoutAppSidebar({ children }) {
     <>
       <div className="flex h-full border-t-4 border-red-500">
         {/* Narrow sidebar */}
-        <div className="w-28 bg-gradient-to-b from-gray-700 via-sky-900 to-gray-900">
+        <div className="w-28 bg-gradient-to-b from-gray-700 via-slate-900 to-gray-900">
           <div className="flex w-full h-full flex-col items-center py-6">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/app/dashboard">
