@@ -80,7 +80,7 @@ export default function SigninForm() {
 
             <div>
               <Link href="/app/dashboard-loading">
-                <a 
+                <button 
                   type="submit"
                   className="group relative flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
                 >
@@ -88,7 +88,7 @@ export default function SigninForm() {
                     <LockClosedIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                   </span>
                   Sign in
-                </a>
+                </button>
               </Link>
             </div>
           </form>

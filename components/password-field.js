@@ -25,17 +25,17 @@ export default function PasswordField() {
       <label htmlFor="password" className="block text-sm font-medium text-gray-700">
         Password
       </label>
-      <div className="relative mt-1 rounded-md shadow-sm">
+      <div className="relative mt-1 rounded-md">
         <input
           type={values.showPassword ? "text" : "password"}
           onChange={handlePasswordChange("password")}
           value={values.password}
           name="password"
           id="password"
-          className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
+          className="relative block w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
           placeholder=""
         />
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+        <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
           <Link href="#">
             <a
               onClick={handleClickShowPassword}

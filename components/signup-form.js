@@ -28,7 +28,7 @@ export default function SignupForm() {
           </div>
           <form className="mt-8 space-y-6" action="/signup2" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
-            <div className="grid grid-cols-6 gap-6">
+            <div className="grid grid-cols-6 gap-4">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">First name</label>
                 <input placeholder="Murray" type="text" name="first-name" id="first-name" autoComplete="given-name" className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
@@ -39,7 +39,7 @@ export default function SignupForm() {
                 <input placeholder="Walker" type="text" name="last-name" id="last-name" autoComplete="family-name" className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm" />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="company-name" className="block text-sm font-medium text-gray-700">
                   Phone number
@@ -54,7 +54,7 @@ export default function SignupForm() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="company-name" className="block text-sm font-medium text-gray-700">
                   Company name
@@ -71,7 +71,7 @@ export default function SignupForm() {
             </div>
             <div>
               <Link href="/signup-industry">
-                <a                  
+                <button                  
                   type="submit"
                   className="mt-8 group relative flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                 >
@@ -79,7 +79,7 @@ export default function SignupForm() {
                     <ArrowRightIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                   </span>
                   Next
-                </a>
+                </button>
               </Link>
             </div>
           </form>

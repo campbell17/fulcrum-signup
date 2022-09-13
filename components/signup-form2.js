@@ -11,6 +11,7 @@ import {
   RectangleStackIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
+import IndustrySelect from './industry-select'
 
 export default function SignupForm2() {
   return (
@@ -39,36 +40,16 @@ export default function SignupForm2() {
             </div>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
-          {/* <div className="mx-auto w-full max-w-md space-y-8">
-
-            <div className="-space-y-px">
-              <div className="col-span-2 sm:col-span-3">
-                <label htmlFor="industry" className="sr-only">
-                  Industry
-                </label>
-                <select
-                  id="industry"
-                  name="industry"
-                  autoComplete="country-name"
-                  defaultValue={'default'}
-                  className="mt-1 block w-full rounded-md border cursor-pointer border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
-                >
-                  <option disabled value="default">Select Industry</option>
-                  <option>Construction</option>
-                  <option>Energy</option>
-                  <option>Enviromental Services</option>
-                  <option>Manufacturing</option>
-                  <option>Retail</option>
-                  <option>Telecommunications</option>
-                  <option>Transportation & Storage</option>
-                  <option>Utilities</option>
-                  <option>Other</option>
-                </select>
+            <div className="block md:hidden max-w-md mx-auto -space-y-px">
+              <label htmlFor="company-size" className="block text-sm font-medium text-gray-700">
+                Industry
+              </label>
+              <div className="mt-1 col-span-2 sm:col-span-3">
+                <IndustrySelect />
               </div>
             </div>
-            </div> */}
-            <div className="mx-auto w-full max-w-4xl space-y-8">            
-              <div className="grid grid-cols-3 gap-2">
+            <div className="hidden md:block mx-auto w-full max-w-4xl space-y-8">            
+              <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3 ">
                 <div className="bg-white p-4 border border-solid rounded-md hover:bg-gray-50">
                   <label htmlFor="industry-construction" className="flex cursor-pointer items-center text-lg font-medium leading-6 text-gray-900">
                     <input
@@ -225,7 +206,7 @@ export default function SignupForm2() {
                   </a>
                 </Link>
                 <Link href="/signup-size">
-                  <a                  
+                  <button                  
                     type="submit"
                     className="group relative flex pr-10 ml-6 w-80 justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
                   >
@@ -233,7 +214,7 @@ export default function SignupForm2() {
                       <ArrowRightIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                     </span>
                     Next
-                  </a>
+                  </button>
                 </Link>
               </div>
             </div>

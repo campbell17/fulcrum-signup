@@ -63,15 +63,15 @@ export default function SignupForm3() {
             <div className="mx-auto w-full max-w-md space-y-8">
               <div className="mt-8 flex items-center justify-between">
                 <Link href="/signup-industry">
-                  <a
+                  <button
                     
                     className="inline-flex justify-center flex-1 rounded-md border border-gray-300 py-2 px-4 text-sm font-medium text-gray-400 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100 focus:ring-offset-2"
                   >
                     back
-                  </a>
+                  </button>
                 </Link>
                 <Link href="/app/dashboard-loading">
-                  <a 
+                  <button 
                     type="submit"
                     className="group relative flex pr-10 ml-6 w-80 justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
                   >
@@ -79,7 +79,7 @@ export default function SignupForm3() {
                       <ArrowRightIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                     </span>
                     Take me to Fulcrum
-                  </a>
+                  </button>
                 </Link>
               </div>
             </div>

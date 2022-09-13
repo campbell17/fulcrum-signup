@@ -51,7 +51,7 @@ export default function TrialForm() {
             </div>
             <div>
               <Link href="/signup-name">
-              <a
+              <button
                 type="submit"
                 className="mt-8 group relative flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
               >
@@ -59,7 +59,7 @@ export default function TrialForm() {
                   <CheckIcon className="h-5 w-5 text-sky-200 group-hover:text-sky-50" aria-hidden="true" />
                 </span>
                 Get started
-              </a>
+              </button>
               </Link>
             </div>
           </form>          
