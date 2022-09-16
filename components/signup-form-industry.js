@@ -12,6 +12,7 @@ import {
 import Link from 'next/link'
 import Image from 'next/image'
 import IndustrySelect from './industry-select'
+import RadioGroupIndustry from './radio-group-industry'
 
 export default function SignupFormIndustry() {
   return (
@@ -48,7 +49,11 @@ export default function SignupFormIndustry() {
                 <IndustrySelect />
               </div>
             </div>
-            <div className="hidden md:block mx-auto w-full max-w-4xl space-y-8">            
+
+            <div className="hidden md:block mx-auto w-full max-w-md space-y-8 justify-center">
+              <RadioGroupIndustry />
+            </div>
+            {/* <div className="hidden md:block mx-auto w-full max-w-4xl space-y-8">            
               <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3 ">
                 <div className="bg-white p-4 border border-solid border-l-8 border-l-yellow-500 rounded-md hover:bg-gray-50">
                   <label htmlFor="industry-construction" className="flex cursor-pointer items-center text-lg font-medium leading-6 text-gray-900">
@@ -195,7 +200,7 @@ export default function SignupFormIndustry() {
                   </label>
                 </div>            
               </div>
-            </div>
+            </div> */}
             <div className="mx-auto w-full max-w-md space-y-8">
               <div className="mt-8 flex items-center justify-between">
                 <Link href="/signup-name">

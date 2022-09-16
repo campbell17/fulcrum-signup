@@ -12,6 +12,7 @@ import {
 import Link from 'next/link'
 import Image from 'next/image'
 import IndustrySelect from './industry-select'
+import CheckGroupUseCases from './check-group-usecases'
 
 export default function SignupFormType() {
   return (
@@ -40,15 +41,10 @@ export default function SignupFormType() {
             </div>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
-            <div className="block md:hidden max-w-md mx-auto -space-y-px">
-              <label htmlFor="company-size" className="block text-sm font-medium text-gray-700">
-                Use cases
-              </label>
-              <div className="mt-1 col-span-2 sm:col-span-3">
-                <IndustrySelect />
-              </div>
-            </div>
-            <div className="hidden md:block mx-auto w-full max-w-4xl space-y-8">            
+            <div className="mx-auto w-full max-w-md space-y-8">            
+              <CheckGroupUseCases />
+            </div>            
+            {/* <div className="hidden md:block mx-auto w-full max-w-4xl space-y-8">            
               <div className="grid gap-2 md:grid-cols-2 content-center">
                 <div className="bg-white p-4 border border-solid border-l-8 border-l-yellow-500 rounded-md hover:bg-gray-50">
                   <label htmlFor="industry-construction" className="flex cursor-pointer items-center text-lg font-medium leading-6 text-gray-900">
@@ -164,7 +160,7 @@ export default function SignupFormType() {
                 </div>            
 
               </div>
-            </div>
+            </div> */}
             <div className="mx-auto w-full max-w-md space-y-8">
               <div className="mt-8 flex items-center justify-between">
                 <Link href="/signup-industry">
