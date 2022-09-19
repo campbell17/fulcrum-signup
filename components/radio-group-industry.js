@@ -8,7 +8,7 @@ const memoryOptions = [
   { name: 'Energy', inStock: true },
   { name: 'Environmental', inStock: true },
   { name: 'Manufacturing', inStock: true },
-  { name: 'Reatil', inStock: true },
+  { name: 'Retail', inStock: true },
   { name: 'Telecommunications', inStock: true },
   { name: 'Transportation', inStock: true },
   { name: 'Utilities', inStock: true },
