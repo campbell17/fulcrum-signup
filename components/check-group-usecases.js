@@ -15,7 +15,7 @@
   ```
 */
 const people = [
-  { name: 'Asset management', id: 1 },
+  { name: 'Asset maintenance', id: 1 },
   { name: 'Safety audits', id: 2 },
   { name: 'Inspections', id: 3 },
   { name: 'Compliance', id: 4 },
