@@ -1,10 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useRef } from 'react'
 import LayoutAppSidebar from '../../components/layout-appsidebar';
 import { LinkIcon, PlusIcon, QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
-import IssuesEmpty from '../../components/app/issues-empty';
-import IssuesSlideOver from '../../components/app/issues-slide-over';
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition } from '@headlessui/react'
+import IssueTypeSelect from '../../components/issue-type-select';
+import Image from 'next/image';
 
 const team = [
   {
@@ -47,7 +47,7 @@ const team = [
 
 export default function Issues() {
   const [open, setOpen] = useState(false)
-  
+  let titleRef = useRef(null)
   return (
     <LayoutAppSidebar>
       <div className="px-4 py-6 sm:px-6 lg:px-8">      
@@ -71,7 +71,7 @@ export default function Issues() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white p-8 mt-12 rounded-lg shadow">
           <button
             type="button"      
-            className="relative block sm:w-1/2 mx-auto rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="relative block sm:w-1/2 mx-auto rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
             onClick={() => setOpen(true)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mx-auto h-12 w-12 text-gray-400">
@@ -83,7 +83,7 @@ export default function Issues() {
 
 
         <Transition.Root show={open} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={setOpen}>
+          <Dialog as="div" className="relative z-10" onClose={setOpen} initialFocus={titleRef}>
             <div className="fixed inset-0" />
 
             <div className="fixed inset-0 overflow-hidden">
@@ -102,47 +102,37 @@ export default function Issues() {
                     <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                       <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                         <div className="h-0 flex-1 overflow-y-auto">
-                          <div className="bg-indigo-700 py-6 px-4 sm:px-6">
+                          <div className="bg-white py-6 px-4 pb-0 sm:px-6">
                             <div className="flex items-center justify-between">
-                              <Dialog.Title className="text-lg font-medium text-white">New Project</Dialog.Title>
-                              <div className="ml-3 flex h-7 items-center">
+                              <input
+                                ref={titleRef}
+                                id="title"
+                                name="title"
+                                type="text"
+                                autoComplete="title"
+                                required
+                                className="mt-1 relative block w-full appearance-none border-b border-white text-gray-900 py-1 placeholder-gray-300 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-xl"
+                                placeholder='Issue Title'                                
+                              />
+
+                              {/* <Dialog.Title className="text-lg font-medium text-gray-700">Report Issue</Dialog.Title> */}
+                              {/* <div className="ml-3 flex h-7 items-center">
                                 <button
                                   type="button"
-                                  className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                                  className="rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
                                   onClick={() => setOpen(false)}
                                 >
                                   <span className="sr-only">Close panel</span>
                                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
-                              </div>
-                            </div>
-                            <div className="mt-1">
-                              <p className="text-sm text-indigo-300">
-                                Get started by filling in the information below to create your new project.
-                              </p>
+                              </div> */}
                             </div>
                           </div>
                           <div className="flex flex-1 flex-col justify-between">
                             <div className="divide-y divide-gray-200 px-4 sm:px-6">
                               <div className="space-y-6 pt-6 pb-5">
-
-                              <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                                  Email address
-                                </label>
-                                <input
-                                  id="email-address"
-                                  name="email"
-                                  type="email"
-                                  autoComplete="email"
-                                  required
-                                  className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
-                                  placeholder="you@company.com"
-                                />
-                              </div>
-
-
-
+                                <IssueTypeSelect />
+  
                                 <div>
                                   <label htmlFor="description" className="block text-sm font-medium text-gray-900">
                                     Description
@@ -154,6 +144,7 @@ export default function Issues() {
                                       rows={4}
                                       className="mt-1 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-400 focus:outline-none focus:ring-sky-400 sm:text-sm"
                                       defaultValue={''}
+                                      
                                     />
                                   </div>
                                 </div>
@@ -163,11 +154,15 @@ export default function Issues() {
                                     <div className="flex space-x-2">
                                       {team.map((person) => (
                                         <a key={person.email} href={person.href} className="rounded-full hover:opacity-75">
-                                          <img
-                                            className="inline-block h-8 w-8 rounded-full"
-                                            src={person.imageUrl}
-                                            alt={person.name}
-                                          />
+                                          <div className="relative inline-block h-8 w-8 rounded-full">
+                                            <Image
+                                              className="inline-block h-8 w-8 rounded-full"
+                                              src={person.imageUrl}
+                                              alt={person.name}
+                                              layout='fill'
+                                              objectFit='cover'
+                                            />
+                                          </div>
                                         </a>
                                       ))}
                                       <button

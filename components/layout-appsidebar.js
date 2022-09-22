@@ -62,7 +62,7 @@ export default function LayoutAppSidebar({ children }) {
                       'group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
-                  >{console.log(item.href)}
+                  >
                     <item.icon
                       className={classNames(
                         router.asPath.includes(item.href) ? 'text-sky-400' : 'text-gray-400 group-hover:text-white',
