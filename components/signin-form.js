@@ -98,9 +98,3 @@ export default function SigninForm() {
     </>
   )
 }
-
-// const Modal = () => {
-//   return (
-//     <TrialModal open />
-//   );
-// }

@@ -58,14 +58,14 @@ export default function LayoutAppSidebar({ children }) {
                 <Link key={item.name} href={item.href}>                
                   <a                                    
                     className={classNames(
-                      router.asPath.includes(item.href) ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+                      router.asPath.includes(item.href) ? 'text-sky-400' : 'text-gray-300 hover:bg-[rgba(55,189,248,.05)] hover:text-white',
                       'group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
                   >{console.log(item.href)}
                     <item.icon
                       className={classNames(
-                        item.current ? 'text-white' : 'text-gray-300 group-hover:text-white',
+                        router.asPath.includes(item.href) ? 'text-sky-400' : 'text-gray-400 group-hover:text-white',
                         'h-6 w-6'
                       )}
                       aria-hidden="true"
