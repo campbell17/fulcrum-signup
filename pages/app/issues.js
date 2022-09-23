@@ -1,10 +1,18 @@
 import { Fragment, useState, useRef } from 'react'
 import LayoutAppSidebar from '../../components/layout-appsidebar';
-import { LinkIcon, PlusIcon, QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Dialog, Transition } from '@headlessui/react'
-import IssueTypeSelect from '../../components/issue-type-select';
+import { 
+  LinkIcon, 
+  PlusIcon, 
+  QuestionMarkCircleIcon, 
+  CalendarIcon, 
+  PaperClipIcon, 
+  TagIcon, 
+  UserCircleIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition, Listbox } from '@headlessui/react'
+import IssueTypeSelectIcons from '../../components/issue-type-select-icons';
 import Image from 'next/image';
+import IssueTypeFieldGroup from '../../components/issue-type-field-group';
 
 const team = [
   {
@@ -44,10 +52,42 @@ const team = [
   },
 ]
 
+const assignees = [
+  {
+    name: 'Unresolved',
+    value: 'unresolved',
+    resolved: false
+  },
+  {
+    name: 'Resolved',
+    value: 'resolved',
+    resolved: true
+  },
+]
+const labels = [
+  { name: 'Unlabelled', value: null },
+  { name: 'Engineering', value: 'engineering' },
+  // More items...
+]
+const dueDates = [
+  { name: 'No due date', value: null },
+  { name: 'Today', value: 'today' },
+  // More items...
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 
 export default function Issues() {
   const [open, setOpen] = useState(false)
+  const [assigned, setAssigned] = useState(assignees[0])
+  const [labelled, setLabelled] = useState(labels[0])
+  const [dated, setDated] = useState(dueDates[0])
+
   let titleRef = useRef(null)
+
   return (
     <LayoutAppSidebar>
       <div className="px-4 py-6 sm:px-6 lg:px-8">      
@@ -131,8 +171,188 @@ export default function Issues() {
                           <div className="flex flex-1 flex-col justify-between">
                             <div className="divide-y divide-gray-200 px-4 sm:px-6">
                               <div className="space-y-6 pt-6 pb-5">
-                                <IssueTypeSelect />
-  
+
+                                <div className="flex flex-nowrap justify-start space-x-2 py-0 px-0">
+                                  <Listbox as="div" value={assigned} onChange={setAssigned} className="flex-shrink-0">
+                                    {({ open }) => (
+                                      <>
+                                        <Listbox.Label className="sr-only"> Assign </Listbox.Label>
+                                        <div className="relative">
+                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
+                                            <span
+                                              className={classNames(
+                                                assigned.resolved ? 'bg-green-400' : 'bg-yellow-400',
+                                                'inline-block h-2 w-2 flex-shrink-0 rounded-full'
+                                              )}
+                                              aria-hidden="true"
+                                            />
+                                            <span className="text-gray-900 hidden truncate sm:ml-2 sm:block">
+                                              {assigned.name}
+                                            </span>
+                                          </Listbox.Button>
+
+                                          <Transition
+                                            show={open}
+                                            as={Fragment}
+                                            leave="transition ease-in duration-100"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                          >
+                                            <Listbox.Options className="absolute left-0 z-10 mt-1 max-h-56 w-52 overflow-visible rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                              {assignees.map((assignee) => (
+                                                <Listbox.Option
+                                                  key={assignee.value}
+                                                  className={({ active }) =>
+                                                    classNames(
+                                                      active ? 'bg-gray-100' : 'bg-white',
+                                                      'relative cursor-default select-none py-2 px-3'
+                                                    )
+                                                  }
+                                                  value={assignee}
+                                                >
+                                                  {({ assigned, active }) => (
+                                                    <>
+                                                      <div className="flex items-center">
+                                                        <span
+                                                          className={classNames(
+                                                            assignee.resolved ? 'bg-green-400' : 'bg-yellow-400',
+                                                            'inline-block h-2 w-2 flex-shrink-0 rounded-full'
+                                                          )}
+                                                          aria-hidden="true"
+                                                        />
+                                                        <span className="ml-3 block truncate font-medium">{assignee.name}</span>
+                                                      </div>
+
+                                                      {assigned ? (
+                                                        <span
+                                                          className={classNames(
+                                                            active ? 'text-gray-700' : 'text-gray-400',
+                                                            'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                          )}
+                                                        >
+                                                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                        </span>
+                                                      ) : null}
+                                                    </>
+                                                  )}                                                  
+                                                </Listbox.Option>
+                                              ))}
+                                            </Listbox.Options>
+                                          </Transition>
+                                        </div>
+                                      </>
+                                    )}
+                                  </Listbox>
+
+                                  <Listbox as="div" value={labelled} onChange={setLabelled} className="flex-shrink-0">
+                                    {({ open }) => (
+                                      <>
+                                        <Listbox.Label className="sr-only"> Add a label </Listbox.Label>
+                                        <div className="relative">
+                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
+                                            <TagIcon
+                                              className={classNames(
+                                                labelled.value === null ? 'text-gray-300' : 'text-gray-500',
+                                                'h-5 w-5 flex-shrink-0 sm:-ml-1'
+                                              )}
+                                              aria-hidden="true"
+                                            />
+                                            <span
+                                              className={classNames(
+                                                labelled.value === null ? '' : 'text-gray-900',
+                                                'hidden truncate sm:ml-2 sm:block'
+                                              )}
+                                            >
+                                              {labelled.value === null ? 'Label' : labelled.name}
+                                            </span>
+                                          </Listbox.Button>
+
+                                          <Transition
+                                            show={open}
+                                            as={Fragment}
+                                            leave="transition ease-in duration-100"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                          >
+                                            <Listbox.Options className="absolute left-0 z-10 mt-1 max-h-56 w-52 overflow-auto rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                              {labels.map((label) => (
+                                                <Listbox.Option
+                                                  key={label.value}
+                                                  className={({ active }) =>
+                                                    classNames(
+                                                      active ? 'bg-gray-100' : 'bg-white',
+                                                      'relative cursor-default select-none py-2 px-3'
+                                                    )
+                                                  }
+                                                  value={label}
+                                                >
+                                                  <div className="flex items-center">
+                                                    <span className="block truncate font-medium">{label.name}</span>
+                                                  </div>
+                                                </Listbox.Option>
+                                              ))}
+                                            </Listbox.Options>
+                                          </Transition>
+                                        </div>
+                                      </>
+                                    )}
+                                  </Listbox>
+
+                                  <Listbox as="div" value={dated} onChange={setDated} className="flex-shrink-0">
+                                    {({ open }) => (
+                                      <>
+                                        <Listbox.Label className="sr-only"> Add a due date </Listbox.Label>
+                                        <div className="relative">
+                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
+                                            <CalendarIcon
+                                              className={classNames(
+                                                dated.value === null ? 'text-gray-300' : 'text-gray-500',
+                                                'h-5 w-5 flex-shrink-0 sm:-ml-1'
+                                              )}
+                                              aria-hidden="true"
+                                            />
+                                            <span
+                                              className={classNames(
+                                                dated.value === null ? '' : 'text-gray-900',
+                                                'hidden truncate sm:ml-2 sm:block'
+                                              )}
+                                            >
+                                              {dated.value === null ? 'Due date' : dated.name}
+                                            </span>
+                                          </Listbox.Button>
+
+                                          <Transition
+                                            show={open}
+                                            as={Fragment}
+                                            leave="transition ease-in duration-100"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                          >
+                                            <Listbox.Options className="absolute right-0 z-10 mt-1 max-h-56 w-52 overflow-auto rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                              {dueDates.map((dueDate) => (
+                                                <Listbox.Option
+                                                  key={dueDate.value}
+                                                  className={({ active }) =>
+                                                    classNames(
+                                                      active ? 'bg-gray-100' : 'bg-white',
+                                                      'relative cursor-default select-none py-2 px-3'
+                                                    )
+                                                  }
+                                                  value={dueDate}
+                                                >
+                                                  <div className="flex items-center">
+                                                    <span className="block truncate font-medium">{dueDate.name}</span>
+                                                  </div>
+                                                </Listbox.Option>
+                                              ))}
+                                            </Listbox.Options>
+                                          </Transition>
+                                        </div>
+                                      </>
+                                    )}
+                                  </Listbox>
+                                </div>
+
                                 <div>
                                   <label htmlFor="description" className="block text-sm font-medium text-gray-900">
                                     Description
