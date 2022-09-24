@@ -6,9 +6,11 @@ import {
   QuestionMarkCircleIcon, 
   CalendarIcon, 
   PaperClipIcon, 
-  TagIcon, 
-  UserCircleIcon } from '@heroicons/react/20/solid';
-import { XMarkIcon, CheckIcon, ShieldExclamationIcon } from '@heroicons/react/24/outline'
+  ShieldExclamationIcon, 
+  TagIcon,
+  UserCircleIcon,
+  ViewfinderCircleIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition, Listbox } from '@headlessui/react'
 import IssueTypeSelectIcons from '../../components/issue-type-select-icons';
 import Image from 'next/image';
@@ -53,28 +55,23 @@ const team = [
 ]
 
 const assignees = [
-  {
-    name: 'Unresolved',
-    value: 'unresolved',
-    resolved: false
-  },
-  {
-    name: 'Resolved',
-    value: 'resolved',
-    resolved: true
-  },
+  { name: 'Unresolved', value: 'unresolved', resolved: false },
+  { name: 'Resolved', value: 'resolved', resolved: true },
 ]
 const priorities = [
-  { name: 'Priority:', value: null, unavailable: true },
+  // { name: 'Priority:', value: null, unavailable: true },
   { name: 'Critical', value: 'critical', unavailable: false },
   { name: 'High', value: 'high', unavailable: false },
   { name: 'Medium', value: 'medium', unavailable: false },
   { name: 'Low', value: 'low', unavailable: false },
 ]
 const dueDates = [
-  { name: 'No due date', value: null },
-  { name: 'Today', value: 'today' },
-  // More items...
+  // { name: 'Type:', value: null, unavailable: true },
+  { name: 'Observation', value: 'observation', unavailable: false },
+  { name: 'Maintenance', value: 'maintenance', unavailable: false },
+  { name: 'Near Miss', value: 'near-miss', unavailable: false },
+  { name: 'Hazard', value: 'hazard', unavailable: false },
+  { name: 'Incident', value: 'incident', unavailable: false },
 ]
 
 function classNames(...classes) {
@@ -85,7 +82,7 @@ export default function Issues() {
   const [open, setOpen] = useState(false)
   const [assigned, setAssigned] = useState(assignees[0])
   const [priority, setPriority] = useState(priorities[3])
-  const [dated, setDated] = useState(dueDates[0])
+  const [dated, setDated] = useState(dueDates[1])
 
   let titleRef = useRef(null)
 
@@ -325,21 +322,14 @@ export default function Issues() {
                                       <>
                                         <Listbox.Label className="sr-only"> Add a due date </Listbox.Label>
                                         <div className="relative">
-                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
-                                            <CalendarIcon
-                                              className={classNames(
-                                                dated.value === null ? 'text-gray-300' : 'text-gray-500',
-                                                'h-5 w-5 flex-shrink-0 sm:-ml-1'
-                                              )}
-                                              aria-hidden="true"
-                                            />
+                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">                                            
                                             <span
                                               className={classNames(
                                                 dated.value === null ? '' : 'text-gray-900',
-                                                'hidden truncate sm:ml-2 sm:block'
+                                                'hidden truncate sm:block'
                                               )}
                                             >
-                                              {dated.value === null ? 'Due date' : dated.name}
+                                              {dated.value === null ? 'Type' : dated.name}
                                             </span>
                                           </Listbox.Button>
 
@@ -350,14 +340,16 @@ export default function Issues() {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                           >
-                                            <Listbox.Options className="absolute right-0 z-10 mt-1 max-h-56 w-52 overflow-auto rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                            <Listbox.Options className="absolute right-0 z-10 mt-1 max-h-58 w-52 overflow-auto rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                               {dueDates.map((dueDate) => (
                                                 <Listbox.Option
                                                   key={dueDate.value}
-                                                  className={({ active }) =>
+                                                  disabled={dueDate.unavailable}
+                                                  className={({ active, disabled }) =>
                                                     classNames(
                                                       active ? 'bg-gray-100' : 'bg-white',
-                                                      'relative cursor-default select-none py-2 px-3'
+                                                      'relative cursor-default select-none py-2 px-3',
+                                                      disabled ? 'text-gray-400' : ''
                                                     )
                                                   }
                                                   value={dueDate}
