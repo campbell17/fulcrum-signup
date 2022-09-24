@@ -8,7 +8,7 @@ import {
   PaperClipIcon, 
   TagIcon, 
   UserCircleIcon } from '@heroicons/react/20/solid';
-import { XMarkIcon, CheckIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon, CheckIcon, ShieldExclamationIcon } from '@heroicons/react/24/outline'
 import { Dialog, Transition, Listbox } from '@headlessui/react'
 import IssueTypeSelectIcons from '../../components/issue-type-select-icons';
 import Image from 'next/image';
@@ -64,10 +64,12 @@ const assignees = [
     resolved: true
   },
 ]
-const labels = [
-  { name: 'Unlabelled', value: null },
-  { name: 'Engineering', value: 'engineering' },
-  // More items...
+const priorities = [
+  { name: 'Priority:', value: null, unavailable: true },
+  { name: 'Critical', value: 'critical', unavailable: false },
+  { name: 'High', value: 'high', unavailable: false },
+  { name: 'Medium', value: 'medium', unavailable: false },
+  { name: 'Low', value: 'low', unavailable: false },
 ]
 const dueDates = [
   { name: 'No due date', value: null },
@@ -79,11 +81,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Issues() {
   const [open, setOpen] = useState(false)
   const [assigned, setAssigned] = useState(assignees[0])
-  const [labelled, setLabelled] = useState(labels[0])
+  const [priority, setPriority] = useState(priorities[3])
   const [dated, setDated] = useState(dueDates[0])
 
   let titleRef = useRef(null)
@@ -244,26 +245,30 @@ export default function Issues() {
                                     )}
                                   </Listbox>
 
-                                  <Listbox as="div" value={labelled} onChange={setLabelled} className="flex-shrink-0">
+                                  <Listbox as="div" value={priority} onChange={setPriority} className="flex-shrink-0">
                                     {({ open }) => (
                                       <>
                                         <Listbox.Label className="sr-only"> Add a label </Listbox.Label>
                                         <div className="relative">
                                           <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
-                                            <TagIcon
+                                            <ShieldExclamationIcon
                                               className={classNames(
-                                                labelled.value === null ? 'text-gray-300' : 'text-gray-500',
-                                                'h-5 w-5 flex-shrink-0 sm:-ml-1'
+                                                priority.value === null ? 'hidden' : 
+                                                priority.value === 'critical' ? 'text-purple-500' : 
+                                                priority.value === 'high' ? 'text-red-500' : 
+                                                priority.value === 'medium' ? 'text-orange-500' : 
+                                                priority.value === 'low' ? 'text-gray-500' : 'text-gray-500',
+                                                'h-5 w-5 flex-shrink-0 sm:-ml-1'                                                        
                                               )}
                                               aria-hidden="true"
                                             />
                                             <span
                                               className={classNames(
-                                                labelled.value === null ? '' : 'text-gray-900',
-                                                'hidden truncate sm:ml-2 sm:block'
+                                                priority.value === null ? '' : 'text-gray-900',
+                                                'hidden truncate sm:ml-1 sm:block'
                                               )}
                                             >
-                                              {labelled.value === null ? 'Label' : labelled.name}
+                                              {priority.value === null ? 'Priority' : priority.name}
                                             </span>
                                           </Listbox.Button>
 
@@ -275,19 +280,36 @@ export default function Issues() {
                                             leaveTo="opacity-0"
                                           >
                                             <Listbox.Options className="absolute left-0 z-10 mt-1 max-h-56 w-52 overflow-auto rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                              {labels.map((label) => (
+                                              {priorities.map((priority) => (
                                                 <Listbox.Option
-                                                  key={label.value}
-                                                  className={({ active }) =>
+                                                  key={priority.value}
+                                                  disabled={priority.unavailable}
+                                                  className={({ active, disabled }) =>
                                                     classNames(
                                                       active ? 'bg-gray-100' : 'bg-white',
-                                                      'relative cursor-default select-none py-2 px-3'
+                                                      'relative cursor-default select-none py-2 px-3',
+                                                      disabled ? 'text-gray-400' : ''
                                                     )
                                                   }
-                                                  value={label}
+                                                  value={priority}
                                                 >
-                                                  <div className="flex items-center">
-                                                    <span className="block truncate font-medium">{label.name}</span>
+                                                  <div className="flex items-center">                                                    
+                                                    <ShieldExclamationIcon
+                                                      className={classNames(
+                                                        priority.value === null ? 'hidden' : 
+                                                        priority.value === 'critical' ? 'text-purple-500' : 
+                                                        priority.value === 'high' ? 'text-red-500' : 
+                                                        priority.value === 'medium' ? 'text-orange-500' : 
+                                                        priority.value === 'low' ? 'text-gray-500' : 'text-gray-500',
+                                                        'h-5 w-5 flex-shrink-0 sm:-ml-1'                                                        
+                                                      )}
+                                                      aria-hidden="true"
+                                                    />
+                                                    <div className="flex items-center">
+                                                      <span className={classNames(
+                                                        priority.value === null ? '' : 'ml-1', 
+                                                        'block truncate font-medium')}>{priority.name}</span>
+                                                    </div>
                                                   </div>
                                                 </Listbox.Option>
                                               ))}
