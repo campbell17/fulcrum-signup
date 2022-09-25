@@ -73,7 +73,10 @@ const dueDates = [
   { name: 'Hazard', value: 'hazard', unavailable: false },
   { name: 'Incident', value: 'incident', unavailable: false },
 ]
-
+const location = [
+  { name: 'None', value: 'none', hasLocation: false },
+  { name: 'Located', value: 'located', hasLocation: true },
+]
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -83,6 +86,7 @@ export default function Issues() {
   const [assigned, setAssigned] = useState(assignees[0])
   const [priority, setPriority] = useState(priorities[3])
   const [dated, setDated] = useState(dueDates[1])
+  const [located, setLocated] = useState(location[0])
 
   let titleRef = useRef(null)
 
@@ -365,6 +369,78 @@ export default function Issues() {
                                       </>
                                     )}
                                   </Listbox>
+
+                                  <Listbox as="div" value={located} onChange={setLocated} className="flex-shrink-0">
+                                    {({ open }) => (
+                                      <>
+                                        <Listbox.Label className="sr-only"> Location </Listbox.Label>
+                                        <div className="relative">
+                                          <Listbox.Button className="relative inline-flex items-center whitespace-nowrap rounded-full bg-gray-50 py-2 px-2 text-sm font-medium text-gray-500 hover:bg-gray-100 sm:px-3">
+                                            <span
+                                              className={classNames(
+                                                located.hasLocation ? 'bg-green-400' : 'bg-yellow-400',
+                                                'inline-block h-2 w-2 flex-shrink-0 rounded-full'
+                                              )}
+                                              aria-hidden="true"
+                                            />
+                                            <span className="text-gray-900 hidden truncate sm:ml-2 sm:block">
+                                              {located.name}
+                                            </span>
+                                          </Listbox.Button>
+
+                                          <Transition
+                                            show={open}
+                                            as={Fragment}
+                                            leave="transition ease-in duration-100"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                          >
+                                            <Listbox.Options className="absolute right-0 z-10 mt-1 max-h-56 w-52 overflow-visible rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                              {location.map((item) => (
+                                                <Listbox.Option
+                                                  key={item.value}
+                                                  className={({ active }) =>
+                                                    classNames(
+                                                      active ? 'bg-gray-100' : 'bg-white',
+                                                      'relative cursor-default select-none py-2 px-3'
+                                                    )
+                                                  }
+                                                  value={item}
+                                                >
+                                                  {({ located, active }) => (
+                                                    <>
+                                                      <div className="flex items-center">
+                                                        <span
+                                                          className={classNames(
+                                                            item.located ? 'bg-green-400' : 'bg-yellow-400',
+                                                            'inline-block h-2 w-2 flex-shrink-0 rounded-full'
+                                                          )}
+                                                          aria-hidden="true"
+                                                        />
+                                                        <span className="ml-3 block truncate font-medium">{item.name}</span>
+                                                      </div>
+
+                                                      {located ? (
+                                                        <span
+                                                          className={classNames(
+                                                            active ? 'text-gray-700' : 'text-gray-400',
+                                                            'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                          )}
+                                                        >
+                                                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                        </span>
+                                                      ) : null}
+                                                    </>
+                                                  )}                                                  
+                                                </Listbox.Option>
+                                              ))}
+                                            </Listbox.Options>
+                                          </Transition>
+                                        </div>
+                                      </>
+                                    )}
+                                  </Listbox>
+
                                 </div>
 
                                 <div>
