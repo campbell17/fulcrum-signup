@@ -107,7 +107,7 @@ export default function Issues() {
 
 
         <Transition.Root show={open} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={()=>{}} initialFocus={titleRef}>
+          <Dialog as="div" className="relative z-10" onClose={setOpen} initialFocus={titleRef}>
             <div className="fixed inset-0" />
 
             <div className="fixed inset-0 overflow-hidden">
